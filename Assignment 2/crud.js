@@ -9,7 +9,7 @@ const $saveBtn = $("#saveBtn");
 const $cancelEdit = $("#cancelEdit");
 const toast = new bootstrap.Toast($("#toast")[0]);
 
-// Show toast message
+
 function showToast(msg, type = "primary") {
   $("#toast").removeClass("text-bg-primary text-bg-success text-bg-danger")
               .addClass(`text-bg-${type}`);
@@ -17,7 +17,7 @@ function showToast(msg, type = "primary") {
   toast.show();
 }
 
-// Render posts in table
+
 function renderPosts() {
   $table.empty();
   posts.forEach((p) => {
