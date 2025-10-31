@@ -40,7 +40,7 @@ function fetchPosts() {
   $loading.show();
   $.get(API_URL)
     .done((data) => {
-      posts = data.slice(0, 5); // show only first 5 posts
+      posts = data.slice(0, 10); // show only first 5 posts
       renderPosts();
       showToast("Posts loaded successfully!", "success");
     })
@@ -124,10 +124,8 @@ $table.on("click", ".deleteBtn", function () {
     .fail(() => showToast("Delete failed!", "danger"));
 });
 
-// Cancel edit
 $cancelEdit.on("click", resetForm);
 
-// Reset form state
 function resetForm() {
   $form[0].reset();
   $("#postId").val("");
@@ -135,5 +133,4 @@ function resetForm() {
   $cancelEdit.hide();
 }
 
-// Initial fetch
 fetchPosts();
