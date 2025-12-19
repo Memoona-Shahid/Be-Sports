@@ -1,0 +1,40 @@
+<div class="container" style="padding: 20px; color: white; background: #000; min-height: 80vh;">
+    <h1 style="color: #9cff00; border-bottom: 2px solid #9cff00; padding-bottom: 10px;">
+        ADMIN PANEL: ORDER MANAGEMENT
+    </h1>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr style="background: #111; color:#9cff00; text-align: left;">
+                <th style="padding: 12px; border: 1px solid #333;">Customer Email</th>
+                <th style="padding: 12px; border: 1px solid #333;">Total Price</th>
+                <th style="padding: 12px; border: 1px solid #333;">Current Status</th>
+                <th style="padding: 12px; border: 1px solid #333;">Update Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% orders.forEach(order => { %>
+                <tr style="border-bottom: 1px solid #222;">
+                    <td style="padding: 12px;"><%= order.email %></td>
+                    <td style="padding: 12px; color: #9cff00; font-weight: bold;">$<%= order.totalPrice.toFixed(2) %></td>
+                    <td style="padding: 12px;">
+                        <span style="background: #333; padding: 4px 8px; border-radius: 4px;"><%= order.status %></span>
+                    </td>
+                    <td style="padding: 12px;">
+                        <form action="/order/admin/update-status" method="POST" style="display: flex; gap: 5px;">
+                            <input type="hidden" name="orderId" value="<%= order._id %>">
+                            <select name="newStatus" style="background: #000; color: #fff; border: 1px solid #9cff00; padding: 5px;">
+                                <option value="Placed" <%= order.status === 'Placed' ? 'selected' : '' %>>Placed</option>
+                                <option value="Processing" <%= order.status === 'Processing' ? 'selected' : '' %>>Processing</option>
+                                <option value="Delivered" <%= order.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                            </select>
+                            <button type="submit" style="background: #9cff00; color: #fff; border: none; padding: 5px 10px; cursor: pointer; font-weight: bold;">
+                                SAVE
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

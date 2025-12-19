@@ -58,5 +58,28 @@ router.get('/', async (req, res) => {
         res.status(500).send('Error loading products.');
     }
 });
+/// CORRECT VERSION ✅
+router.post('/add-to-cart', (req, res) => {
+    const { productId, name, price, image } = req.body; // Ensure 'image' is lowercase
+
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
+
+    const existingItem = req.session.cart.find(item => item.productId === productId);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        req.session.cart.push({
+            productId: productId,
+            name: name,
+            price: parseFloat(price),
+            image: image, // <--- MUST be lowercase to match the line above
+            quantity: 1
+        });
+    }
+    res.redirect('/products');
+});
 
 module.exports = router;

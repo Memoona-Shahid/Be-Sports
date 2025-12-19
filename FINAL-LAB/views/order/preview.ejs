@@ -1,0 +1,73 @@
+<div class="container" style="padding: 20px; color: white; background: #000;">
+    <h2 style="color: #9cff00; border-bottom: 2px solid #9cff00; padding-bottom: 10px;">REVIEW YOUR ORDER</h2>
+    
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+        <thead>
+            <tr style="background: #222; color: #9cff00; text-align: left;">
+                <th style="padding: 10px;">Image</th>
+                <th style="padding: 10px;">Product</th>
+                <th style="padding: 10px;">Price</th>
+                <th style="padding: 10px;">Qty</th>
+                <th style="padding: 10px;">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cart.forEach(item => { %>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 10px;"><img src="/images/<%= item.image %>" width="50" style="border: 1px solid #9cff00;"></td>
+                    <td style="padding: 10px;"><%= item.name %></td>
+                    <td style="padding: 10px;">$<%= item.price.toFixed(2) %></td>
+                    <td style="padding: 10px;"><%= item.quantity %></td>
+                    <td style="padding: 10px;">$<%= (item.price * item.quantity).toFixed(2) %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <div style="background: #111; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #333;">
+        <div style="margin-bottom: 20px;">
+            <form action="/order/preview" method="GET" style="display: flex; gap: 10px;">
+                <input type="text" name="coupon" placeholder="Enter Coupon Code" value="<%= couponCode %>" 
+                       style="background: #000; color: #fff; border: 1px solid #9cff00; padding: 8px; border-radius: 4px; flex-grow: 1;">
+                <button type="submit" style="background: #9cff00; color: #000; border: none; padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 4px;">
+                    Apply SAVE10
+                </button>
+            </form>
+        </div>
+
+        <div style="text-align: right;">
+            <p style="margin: 5px 0;">Subtotal: <span style="color: #9cff00;">$<%= subtotal.toFixed(2) %></span></p>
+            <p style="margin: 5px 0; color: #ff4444;">Discount: -$<%= discount.toFixed(2) %></p>
+            <h3 style="margin: 10px 0; font-size: 1.5rem;">Grand Total: <span style="color: #9cff00;">$<%= grandTotal.toFixed(2) %></span></h3>
+        </div>
+    </div>
+
+    <div style="background: #111; padding: 20px; border-radius: 8px; border: 1px solid #9cff00;">
+        <h3 style="color: #9cff00; margin-top: 0;">DELIVERY INFORMATION</h3>
+        
+        <form action="/order/confirm" method="POST">
+            <input type="hidden" name="coupon" value="<%= couponCode %>">
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; color: #9cff00;">Shipping Address:</label>
+                <textarea name="address" required placeholder="Street, City, Post Code..." 
+                          style="width: 100%; height: 80px; background: #000; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 4px;"></textarea>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; color: #9cff00;">Phone Number:</label>
+                <input type="text" name="phone" required placeholder="01XXXXXXXXX" 
+                       style="width: 100%; background: #000; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 4px;">
+            </div>
+
+            <div style="display: flex; gap: 15px;">
+                <button type="submit" class="btn" style="flex: 2; background: #9cff00; color: #000; font-weight: bold; padding: 15px; border: none; border-radius: 4px; cursor: pointer;">
+                    PLACE ORDER & SAVE TO HISTORY 🚀
+                </button>
+                <a href="/products" style="flex: 1; text-align: center; text-decoration: none; background: #333; color: white; padding: 15px; border-radius: 4px; font-weight: bold;">
+                    Back to Shop
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

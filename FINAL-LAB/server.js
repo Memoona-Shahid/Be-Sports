@@ -40,6 +40,7 @@ app.use(flash());
 // Global Variables Middleware (Passes user and messages to all EJS templates)
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
+    res.locals.session = req.session;
     res.locals.error = req.flash('error');
     res.locals.success = req.flash('success');
     next();
@@ -59,7 +60,9 @@ const indexRouter = require('./routes/index-routes');
 const productRouter = require('./routes/product-routes');
 const adminRouter = require('./routes/admin-routes');
 const authRouter = require('./routes/auth-routes');
+const orderRoutes = require('./routes/order-routes');
 
+app.use('/order', orderRoutes);
 app.use('/', indexRouter);
 app.use('/products', productRouter);
 app.use('/admin', adminRouter);

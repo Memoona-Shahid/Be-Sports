@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
             filter.price = { $lte: priceMax };
         }
 
-        const products = await Product.find(filter)
+        const products =  Product.find(filter)
             .skip(skip)
             .limit(limit);
 

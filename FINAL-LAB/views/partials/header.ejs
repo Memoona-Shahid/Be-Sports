@@ -1,26 +1,38 @@
-<header class="site-header"  style="background: linear-gradient(90deg, #000 0%, #222 60%, #9cff00 100%);">
-    <div class="container header-inner" >
-      <div class="logo">
-        <a href="/"><img src="/images/retina-sport.png" alt="BeSport Logo"></a>
-      </div>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="/">HOME</a></li>
-          <li><a href="/company">COMPANY</a></li>
-          <li><a href="/sport-stars">SPORT STARS</a></li>
-          <li><a href="/products">PRODUCTS</a></li> 
-          <% if (user) { %>
-      <% if (user.role === 'admin') { %>
-        <li><a href="/admin" class="admin-btn">ADMIN-PANEL</a></li>
-      <% } %>
-      <li><a href="/auth/logout">LOGOUT (<%= user.name %>)</a></li>
-    <% } else { %>
-      <li><a href="/auth/login">LOGIN</a></li>
-      <li><a href="/auth/register">REGISTER</a></li>
-    <% } %>
-        
+<header class="site-header" style="background: linear-gradient(90deg, #000 0%, #222 60%, #9cff00 100%);">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="/"><img src="/images/retina-sport.png" alt="BeSport Logo"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/company">COMPANY</a></li>
+                <li><a href="/sport-stars">SPORT STARS</a></li>
+                <li><a href="/products">PRODUCTS</a></li> 
 
-        </ul>
-      </nav>
+                <% if (user) { %>
+                    
+                    <% if (user.role === 'user') { %>
+                        <li>
+                            <a href="/order/preview" style="color: #9cff00; font-weight: bold;">
+                                CART (<%= (session.cart) ? session.cart.length : 0 %>)
+                            </a>
+                        </li>
+                        <li><a href="/order/my-orders">MY ORDERS</a></li>
+                    <% } %>
+
+                    <% if (user.role === 'admin') { %>
+                        <li><a href="/admin" class="admin-btn" >ADMIN-PANEL</a></li>
+                        <li><a href="/order/admin/manage" >MANAGE ORDERS</a></li>
+                    <% } %>
+
+                    <li><a href="/auth/logout">LOGOUT (<%= user.name %>)</a></li>
+
+                <% } else { %>
+                    <li><a href="/auth/login">LOGIN</a></li>
+                    <li><a href="/auth/register">REGISTER</a></li>
+                <% } %>
+            </ul>
+        </nav>
     </div>
 </header>

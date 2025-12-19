@@ -1,0 +1,44 @@
+<div class="container" style="padding: 40px 20px; text-align: center; color: white; background: #000; min-height: 80vh;">
+    
+    <div style="font-size: 80px; margin-bottom: 20px;">✅</div>
+    
+    <h1 style="color: #9cff00; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px;">
+        Order Placed Successfully!
+    </h1>
+    
+    <p style="font-size: 1.2rem; margin-bottom: 30px; color: #ccc;">
+        Thank you for your purchase. Your gear is being prepared for shipment.
+    </p>
+
+    <div style="background: #111; border: 2px solid #9cff00; border-radius: 12px; padding: 25px; max-width: 600px; margin: 0 auto; text-align: left; box-shadow: 0 0 15px rgba(156, 255, 0, 0.2);">
+        <h3 style="color: #9cff00; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">
+            ORDER DETAILS
+        </h3>
+        
+        <p><strong>Order ID:</strong> <span style="color: #9cff00;"><%= order._id %></span></p>
+        <p><strong>Total Amount:</strong> <span style="color: #9cff00;">$<%= order.totalPrice.toFixed(2) %></span></p>
+        <p><strong>Status:</strong> <span style="background: #9cff00; color: #000; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.9rem;"><%= order.status %></span></p>
+        
+        <div style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed #444;">
+            <p style="margin: 5px 0;"><strong>Shipping to:</strong></p>
+            <p style="color: #bbb; margin: 0;"><%= order.address %></p>
+            <p style="color: #bbb; margin: 5px 0;">📞 <%= order.phone %></p>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center;">
+        <a href="/order/my-orders" 
+           style="background: #9cff00; color: #000; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s;">
+           VIEW ORDER HISTORY
+        </a>
+        
+        <a href="/products" 
+           style="background: transparent; color: #9cff00; border: 2px solid #9cff00; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s;">
+           CONTINUE SHOPPING
+        </a>
+    </div>
+
+    <p style="margin-top: 30px; color: #666; font-size: 0.9rem;">
+        A confirmation email has been sent to <strong><%= order.email %></strong>
+    </p>
+</div>

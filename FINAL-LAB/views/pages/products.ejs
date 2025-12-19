@@ -33,7 +33,13 @@
                         <p style="font-size: 0.9em;">
                             <%= (product.description && product.description.length > 50) ? product.description.substring(0, 50) + '...' : product.description %>
                         </p>
-                        <a href="#" class="btn-small" style="margin-top: 10px;">Add to Cart</a>
+                       <form action="/products/add-to-cart" method="POST">
+                          <input type="hidden" name="productId" value="<%= product._id %>">
+                          <input type="hidden" name="name" value="<%= product.name %>">
+                          <input type="hidden" name="price" value="<%= product.price %>">
+                         <input type="hidden" name="image" value="<%= product.image %>">
+                        <button type="submit" class="btn">Add to Cart 🛒</button>
+                       </form>
                     </div>
                 <% }) %>
             <% } else { %>

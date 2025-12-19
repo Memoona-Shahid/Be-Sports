@@ -1,0 +1,35 @@
+<div class="container" style="padding: 20px;">
+    <h2 style="color: #9cff00; border-bottom: 2px solid #9cff00; padding-bottom: 10px;">MY ORDER HISTORY</h2>
+
+    <% if (orders.length > 0) { %>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px; color:black;">
+            <thead>
+                <tr style="background: #222; color: #9cff00; text-align: left;">
+                    <th style="padding: 12px; border: 1px solid #444;">Order ID</th>
+                    <th style="padding: 12px; border: 1px solid #444;">Date</th>
+                    <th style="padding: 12px; border: 1px solid #444;">Total Price</th>
+                    <th style="padding: 12px; border: 1px solid #444;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(order => { %>
+                    <tr style="border-bottom: 1px solid #333;">
+                        <td style="padding: 12px; border: 1px solid #444;"><%= order._id %></td>
+                        <td style="padding: 12px; border: 1px solid #444;"><%= order.createdAt.toDateString() %></td>
+                        <td style="padding: 12px; border: 1px solid #444;">$<%= order.totalPrice.toFixed(2) %></td>
+                        <td style="padding: 12px; border: 1px solid #444;">
+                            <span style="padding: 5px 10px; border-radius: 5px; background: #333; color: #9cff00; font-weight: bold;">
+                                <%= order.status %>
+                            </span>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <div style="text-align: center; margin-top: 50px;">
+            <p>You haven't placed any orders yet.</p>
+            <a href="/products" class="btn" style="text-decoration: none; padding: 10px 20px; background: #9cff00; color: black; display: inline-block; border-radius: 5px;">Go Shopping</a>
+        </div>
+    <% } %>
+</div>
