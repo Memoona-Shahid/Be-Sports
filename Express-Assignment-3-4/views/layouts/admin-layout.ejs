@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-container" style="display: flex; background: linear-gradient(90deg, #000 0%, #222 60%, #9cff00 100%); color: wh;">
+        
+        <nav class="admin-sidebar" style="width: 250px; background: #111; height: 100vh; color: white; position: fixed; padding-top: 20px;">
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="/admin" style="color: white; padding: 15px; display: block; text-decoration: none;"><i class="fas fa-home"></i> Dashboard Overview</a></li>
+                <li><a href="/admin/inventory" style="color: white; padding: 15px; display: block; text-decoration: none;"><i class="fas fa-boxes"></i> Inventory</a></li>
+                <li><a href="/admin/inventory/add" style="color: white; padding: 15px; display: block; text-decoration: none;"><i class="fas fa-plus"></i> Add Item</a></li>
+                <li class="divider" style="border-top: 1px solid #333; margin: 10px 0;"></li>
+                <li><a href="/" target="_blank" style="color: white; padding: 15px; display: block; text-decoration: none;">View Website</a></li>
+                <li><a href="/auth/logout" style="color: white; padding: 15px; display: block; text-decoration: none;">Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="admin-content" style="margin-left: 250px; padding: 40px; width: 100%;">
+            <%- body %>
+        </main>
+
+    </div>
+</body>
+</html>

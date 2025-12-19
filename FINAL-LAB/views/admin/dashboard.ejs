@@ -1,0 +1,46 @@
+<div class="dashboard-wrapper" >
+    <h2 style="color: white;">System Overview</h2>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Total Products</h3>
+            <p class="stat-number"><%= stats.totalProducts %></p>
+            <a href="/admin/inventory">Manage Inventory →</a>
+           
+        </div>
+        <div class="stat-card">
+            <h3>Total Users</h3>
+            <p class="stat-number"><%= stats.totalUsers %></p>
+            <span>Active Accounts</span>
+        </div>
+        <div class="stat-card warning">
+            <h3>Low Stock Alerts</h3>
+            <p class="stat-number"><%= stats.lowStockCount %></p>
+            <a href="/admin/inventory" style="color: #ff4d4d;">Restock Needed!</a>
+        </div>
+    </div>
+
+    <div class="dashboard-main">
+        <h3>Recently Added Products</h3>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% recentProducts.forEach(p => { %>
+                    <tr>
+                        <td><img src="/images/<%= p.image %>" width="40"></td>
+                        <td><%= p.name %></td>
+                        <td>$<%= p.price.toFixed(2) %></td>
+                        <td><%= p.stock %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

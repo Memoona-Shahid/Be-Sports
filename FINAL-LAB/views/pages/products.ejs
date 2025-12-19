@@ -1,0 +1,63 @@
+<section class="explore-products">
+    <div class="container">
+        <h2>OUR PRODUCT COLLECTION</h2>
+
+        <form action="/products" method="GET" class="filter-form">
+            <label for="category">Category:</label>
+            <select name="category" id="category" onchange="this.form.submit()">
+                <option value="All" <%= currentCategory === 'All' ? 'selected' : '' %>>All Categories</option>
+                <% categories.forEach(cat => { %>
+                    <option value="<%= cat %>" <%= currentCategory === cat ? 'selected' : '' %>>
+                        <%= cat %>
+                    </option>
+                <% }) %>
+            </select>
+            
+            <label for="priceMin">Min Price:</label>
+            <input type="number" name="priceMin" id="priceMin" value="<%= currentPriceMin %>" min="0">
+            
+            <label for="priceMax">Max Price:</label>
+            <input type="number" name="priceMax" id="priceMax" value="<%= currentPriceMax %>" min="0">
+            
+            <button type="submit" class="btn-small">Apply Filters</button>
+            <a href="/products" class="btn-small" style="background: #ccc; color: #333;">Reset</a>
+        </form>
+
+        <div class="product-list">
+            <% if (products.length > 0) { %>
+                <% products.forEach(product => { %>
+                    <div class="product-item">
+                        <img src="/images/<%= product.image %>" alt="<%= product.name %>">
+                        <h3><%= product.name %></h3>
+                        <p style="color: greenyellow; font-size: 1.2em; font-weight: bold;">$<%= product.price.toFixed(2) %></p>
+                        <p style="font-size: 0.9em;">
+                            <%= (product.description && product.description.length > 50) ? product.description.substring(0, 50) + '...' : product.description %>
+                        </p>
+                        <a href="#" class="btn-small" style="margin-top: 10px;">Add to Cart</a>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No products found matching your criteria.</p>
+            <% } %>
+        </div> <% if (totalPages > 1) { %>
+        <div class="pagination-container">
+            <div class="pagination-controls">
+                <% for(let i = 1; i <= totalPages; i++) { %>
+                    <% 
+                        const queryString = new URLSearchParams({
+                            page: i, 
+                            category: currentCategory,
+                            priceMin: currentPriceMin,
+                            priceMax: currentPriceMax
+                        }).toString(); 
+                    %>
+                    <a href="/products?<%= queryString %>" 
+                       class="page-link <%= i === currentPage ? 'active' : '' %>">
+                       <%= i %>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <% } %>
+
+    </div> </section>

@@ -1,0 +1,25 @@
+<section style="padding: 20px 0; background: linear-gradient(90deg, #000 0%, #222 60%, #9cff00 100%);; color: #fff;">
+    
+    <div class="container">
+        <h1 style="align-items: center;">SPORT STARS</h1>
+
+    </div>
+</section>
+<section style="padding: 20px 0; background: linear-gradient(90deg, #000 0%, #222 60%, #9cff00 100%);; color: #fff;">
+  
+    <div class="container">
+        <div class="stars-grid">
+            <% stars.forEach(star => { %>
+                <div class="star-card">
+                    <div class="star-image-wrapper">
+                        <img src="/images/<%= star.image %>" alt="<%= star.name %>">
+                        <div class="star-overlay">
+                            <span class="star-category"><%= star.sport %></span>
+                            <h3 class="star-name"><%= star.name %></h3>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,34 @@
+<div style="color: white;">
+    <h2>Product Management</h2>
+    <a href="/admin/inventory/add" class="btn" style="margin-bottom: 20px; display: inline-block;">+ Add New Product</a>
+</div>
+<table class="admin-table" style="color: white;">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(product => { %>
+            <tr>
+                <td><img src="/images/<%= product.image %>" alt="<%= product.name %>" style="width: 50px;"></td>
+                <td><%= product.name %></td>
+                <td><%= product.category %></td>
+                <td>$<%= product.price.toFixed(2) %></td>
+                <td><%= product.stock %></td>
+                <td>
+                    <a href="/admin/inventory/edit/<%= product._id %>" class="btn" style="padding: 5px 10px;">Edit</a>
+                    <form action="/admin/inventory/delete/<%= product._id %>" method="POST" style="display: inline;">
+                        <button type="submit" class="btn" style="background: red; padding: 5px 10px;" 
+                                onclick="return confirm('Delete <%= product.name %>?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

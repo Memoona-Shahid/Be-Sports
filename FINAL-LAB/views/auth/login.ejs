@@ -1,0 +1,34 @@
+<div class="container" style="max-width: 450px; margin: 100px auto; text-align: center;">
+    <h2 style="text-transform: uppercase; margin-bottom: 20px;">Welcome Back</h2>
+
+    <% if (success && success.length > 0) { %>
+        <div style="background: #2ecc71; color: white; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+            <%= success %>
+        </div>
+    <% } %>
+
+    <% if (error && error.length > 0) { %>
+        <div style="background: #ff4d4d; color: white; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+            <%= error %>
+        </div>
+    <% } %>
+
+    <form action="/auth/login" method="POST" style="background: #1a1a1a; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <div style="margin-bottom: 15px;">
+            <input type="email" name="email" placeholder="Email" required 
+                   style="width: 100%; padding: 12px; border: 1px solid #333; background: #222; color: white; border-radius: 4px;">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <input type="password" name="password" placeholder="Password" required 
+                   style="width: 100%; padding: 12px; border: 1px solid #333; background: #222; color: white; border-radius: 4px;">
+        </div>
+        
+        <button type="submit" class="btn" style="width: 100%; padding: 12px; background: #9cff00; color: black; font-weight: bold; border: none; cursor: pointer; text-transform: uppercase;">
+            Enter Dashboard
+        </button>
+    </form>
+
+    <p style="margin-top: 20px; color: #666;">
+        Don't have an account? <a href="/auth/register" style="color: #9cff00; text-decoration: none;">Register here</a>
+    </p>
+</div>
