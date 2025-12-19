@@ -52,14 +52,14 @@ router.post('/register', async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        // 1. Check if the user already exists
+        //  Check if the user already exists
         const userExists = await User.findOne({ email });
         if (userExists) {
             req.flash('error', 'Email is already registered.');
             return res.redirect('/auth/register');
         }
 
-        // 2. Hash the password for security
+        //  Hash the password for security
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // 3. Create the new user record
@@ -67,10 +67,10 @@ router.post('/register', async (req, res) => {
             name,
             email,
             password: hashedPassword,
-            role: 'user' // Default new signups to 'user'
+            role: 'user' 
         });
 
-        // 4. Save to MongoDB
+        //  Save to MongoDB
         await newUser.save();
 
         // 5. Success! Send them to login
